@@ -10,12 +10,7 @@ const enhancers =[];
 
 
 export default (initialState) =>{
-
-  
-const middleware = [thunk,log,socketIoMiddleware]
-
-
-
+const middleware = [thunk,log]
 const store = createStore(
     makeRootReducer(),
     initialState,

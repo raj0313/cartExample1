@@ -4,8 +4,9 @@ import { View, AsyncStorage, BackHandler, ToastAndroid,ActivityIndicator,BackAnd
 import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import { NetInfo, Text,Animated } from "react-native";
-import {ProductList} from "../routes/Products/Component/products"
-import connect from 'react-redux'
+import ProductList from "../routes/Products/Component/products"
+import  { connect } from 'react-redux';
+import Cart from "../routes/Products/Component/Cart"
 const RouterWithRedux = connect()(Router);
 
 export default class AppContainer extends Component {
@@ -13,6 +14,10 @@ export default class AppContainer extends Component {
 		store: PropTypes.object.isRequired
 	}
 	constructor() {
+	super()
+	{
+
+	}
 	}
 		async componentDidMount() {
 		}
@@ -31,12 +36,16 @@ export default class AppContainer extends Component {
 					navBarButtonColor={"rgb(246, 168, 28)"}>
 				
 				<Scene key = "root" >
-				<Scene key ="products"
-				title="Products"
-				component = {ProductList}>
-					
+						<Scene key ="products"
+						title="Products"
+						initial
+						component = {ProductList}/>
+						<Scene key ="cart"
+						title="Cart"
+						component = {Cart}/>
 
-				</Scene>
+			
+			
 				</Scene>
 			</RouterWithRedux>
 			</Provider>
