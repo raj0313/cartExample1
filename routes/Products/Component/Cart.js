@@ -36,15 +36,17 @@ class Cart extends React.Component{
             <Card key={index}>
            
             <View style ={{alignItems : "center"}}>
-           
-                <Text style={styles.text}>{item.name}</Text>
-                    <Text><Icon name ="dollar"/>{item.price} x {item.quantity} = {this.props.products.total}</Text>
+                    <Text style={styles.text}>{item.name}</Text>
+                    <Text><Icon name ="dollar"/>{item.price} x {item.quantity} = {item.total.toFixed(2)}</Text>
+                    <Text><Icon name ="cross"/>Remove</Text>
+
             </View>
-              
+             
             </Card>
             )
            })
            }
+          
           
          </ScrollView>  
          )

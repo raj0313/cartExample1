@@ -28,3 +28,10 @@ export function removeQuantity(payload){
         payload
     }
 }
+export function removeCart(payload){
+   
+    return{
+        type:'REMOVE_CART',
+        payload
+    }
+}

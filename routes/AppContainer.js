@@ -31,13 +31,14 @@ export default class AppContainer extends Component {
 	return (
 			<Provider store={this.props.store}>
 				<RouterWithRedux
-					navigationBarStyle={{ backgroundColor: 'white', color: "#fff", flex: 1 }}
+					navigationBarStyle={{ backgroundColor: 'white',alignItems:"center", color: "#fff", flex: 1 }}
 					titleStyle={{ color: "rgb(246, 168, 28)" }}
-					navBarButtonColor={"rgb(246, 168, 28)"}>
+					navBarButtonColor={"rgb(246, 168, 28)"}
+					>
 				
 				<Scene key = "root" >
 						<Scene key ="products"
-						title="Products"
+						
 						initial
 						component = {ProductList}/>
 						<Scene key ="cart"

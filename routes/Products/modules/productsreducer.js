@@ -4,7 +4,7 @@ const initialState ={
     isLoading : false,
     products :[],
     cart :[],
-    quantity : 0,
+    quantity : 1,
     total : 0,
     count : 0
     
@@ -18,40 +18,52 @@ export default function ProductReducer(state=initialState,action){
                 products : data
             }
             case 'ADD_TO_CART':
-                console.log(action.payload)
-               let idAlreadyExists = state.cart.indexOf(action.payload.name) > -1
+               
               var index = state.cart.findIndex(p => p.id == action.payload.id)
              
               if(index > -1)
               {
-                  
-                state.cart.splice(index)
+                state.cart.splice(index,1)
                 var newData = {
                     id:action.payload.id,
                     name: action.payload.name,
                     price:action.payload.price,
-                    quantity:state.quantity
+                    quantity: state.quantity ,
+                    total : action.payload.price * state.quantity
                 }
                 return {  
                     ...state,
                         cart:[...state.cart,newData],
-                        total : action.payload.price * action.payload.quantity,
-                        quantity : state.quantity + 1
+                        
+                        
                     }
               }
+              var newData = {
+                id:action.payload.id,
+                name: action.payload.name,
+                price:action.payload.price,
+                quantity:action.payload.quantity,
+                total : action.payload.price * action.payload.quantity
+            }
                 return {  
                 ...state,
-                    cart:[...state.cart,action.payload],
-                    total : action.payload.price * action.payload.quantity,
-                    quantity:1
+                    cart:[...state.cart,newData],
+                   
+                    
                 
                     
                 }
                 case 'ADD_QUANTITY':
+               var index = state.cart.findIndex(p=>p.id === action.payload)
+
+               
                 return{
-                    ...state,
+                    ...state, 
+             
                     quantity : state.quantity + 1
                 }
+               
+               
                 case 'REMOVE_QUANTITY':
                     if(state.quantity <= 1)
                     {
@@ -65,6 +77,18 @@ export default function ProductReducer(state=initialState,action){
                         ...state,
                         quantity : state.quantity - 1 
                     }
+
+                    case 'REMOVE_CART':{
+                       
+                            return{
+                                ...state,
+                                selectedItems:[
+                                    ...state.cart.slice(0, action.payload),
+                                    ...state.cart.slice(action.payload + 1)
+                                ]
+                            }
+                        }
+                    
                 
         default:
         return{...state}

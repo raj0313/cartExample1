@@ -68,9 +68,19 @@ class ProductList extends React.Component{
             }
             
              {this.props.cart.length>=1 &&
-                 <View style={{bottom:0,backgroundColor:"blue"}}>
-                <Text style={{size : "10"}}> <Icon name="shopping-cart" onPress={()=> Actions.push("cart")} /> {this.props.cart.length}</Text>
-                </View>            
+            
+                <TouchableOpacity onPress={()=>  Actions.push("cart")} 
+                style={{bottom:0,
+                height:"5%",
+                alignItems:"center",
+                backgroundColor:"#3E9920",
+                borderRadius:0}}>
+                 <Text  
+                 style={{color:"#fff",
+                 textAlign:"center",
+                 textAlignVertical:"center"}}>  VIEW CART NZ $ {this.props.products.total} items : {this.props.cart.length} </Text>
+                 </TouchableOpacity>
+                     
             }
             </View>             
             )

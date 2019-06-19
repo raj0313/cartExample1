@@ -1,6 +1,6 @@
 import React,{Component} from "react"
 import {Card, Button} from 'react-native-elements'
-import {Text,View,FlatList,TouchableHighlight,Image,StyleSheet} from 'react-native'
+import {Text,View,FlatList,TouchableOpacity,Image,StyleSheet} from 'react-native'
 import  Icon  from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux'
 class ProductListing extends React.Component{
@@ -26,30 +26,38 @@ class ProductListing extends React.Component{
                 resizeMode = "contain" height= "10" width ="20"/>
                <Text style={styles.text}>{this.props.data.item.name}</Text>
                 <Text><Icon name ="dollar"/>{this.props.data.item.price}</Text>
-                {/* <View style={{ 
+                <View style={{ 
 										flexDirection: "row",
 										justifyContent: "space-evenly" }}>
 										<View style={{ flex: 1, flexDirection: "row", alignItems: "stretch", justifyContent: "space-evenly" }}>
 											<Icon
 												name="minus-circle"
 												size={30} color={"blue"}
-												onPress={() => this.props.removeQuantity(this.props.data.index)} />
+												onPress={() => this.props.removeQuantity(this.props.data.item.id)} />
 											<Text> {this.props.quantity}</Text>
 											<Icon
 												name="plus-circle"
 												size={30} color={"blue"}
-												onPress={() => this.props.addQuantity(this.props.data.index)} />
+												onPress={() => this.props.addQuantity(this.props.data.id)} />
 										</View>
-									</View> */}
-                
-                <Text style={{
-                    backgroundColor:"grey",width:"100%",height:"4%",textAlign:"center",textAlignVertical:"center"}} onPress = {()=> this.props.addToCart({
-                    id: this.props.data.item.id,
-                    name : this.props.data.item.name,
-                    price: this.props.data.item.price,
-                    quantity : this.props.quantity
-                })}>ADD TO CART</Text>
-
+									</View>
+                <TouchableOpacity
+                         onPress = {()=> this.props.addToCart({
+                        id: this.props.data.item.id,
+                        name : this.props.data.item.name,
+                        price: this.props.data.item.price,
+                        quantity : this.props.quantity
+                    })
+                }
+                    style={{
+                        backgroundColor:"blue",
+                        width:"100%",
+                        padding:10,
+                        textAlign:"center",
+                        textAlignVertical:"center"}}          
+                >
+                <Text style={{textAlign:"center", textAlignVertical:"center",color:"#fff"}}>ADD TO CART </Text> 
+            </TouchableOpacity>
 
                 </View>
                       
