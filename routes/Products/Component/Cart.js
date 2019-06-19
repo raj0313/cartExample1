@@ -1,10 +1,10 @@
 import React,{Component} from "react"
 import {Card, Button, ListItem} from 'react-native-elements'
-import {Text,View,FlatList,TouchableOpacity,StyleSheet,ScrollView} from 'react-native'
+import {Text,View,FlatList,TouchableOpacity,StyleSheet,ScrollView,Image} from 'react-native'
 import {connect} from 'react-redux'
 import { bindActionCreators } from "redux"
-import {getProductList,addToCart,addQuantity,removeQuantity} from '../modules/actions'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import {removeCart} from '../modules/actions'
+import Icon from 'react-native-vector-icons/Entypo'
 import ProductListing from './ProductListing'
 import { Actions } from "react-native-router-flux";
 
@@ -37,16 +37,21 @@ class Cart extends React.Component{
            
             <View style ={{alignItems : "center"}}>
                     <Text style={styles.text}>{item.name}</Text>
-                    <Text><Icon name ="dollar"/>{item.price} x {item.quantity} = {item.total.toFixed(2)}</Text>
-                    <Text><Icon name ="cross"/>Remove</Text>
+                    <Text style={styles.text2}><Icon name ="circle-with-cross"/>{item.price} x {item.quantity} = {item.total.toFixed(2)}</Text>
+                    <TouchableOpacity style={{backgroundColor:"red",width:"40%"}}>
+                    <Text style={{color:"#fff",textAlign:"center",textAlignVertical:"center"}} onPress={()=> this.props.removeCart(index)}><Icon name ="cross"/>Remove</Text>
+                    </TouchableOpacity>
 
             </View>
-             
+           
             </Card>
             )
            })
            }
-          
+         
+           <Text style={{position:"absolute",bottom:0,textAlign:"center"}}>Total:{this.props.cart.reduce((total,item)=>{
+               return total + item.total
+           },0)}</Text>
           
          </ScrollView>  
          )
@@ -59,10 +64,7 @@ const mapStatetoProps =(state)=>({
 })
 const mapDispatchtoProps =(dispatch)=>{
     return bindActionCreators({
-    getProductList,
-    addToCart,
-    addQuantity,
-    removeQuantity
+        removeCart
 },dispatch);
 }
 const styles = StyleSheet.create({
@@ -80,6 +82,14 @@ const styles = StyleSheet.create({
         color:"black",
         justifyContent: 'center', alignItems: 'center'
     },
+    text2:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        color:"black",
+        justifyContent: 'center', alignItems: 'center',
+        marginBottom:20,
+    
+    }
    
   });
-export default connect(mapStatetoProps,null)(Cart)
+export default connect(mapStatetoProps,mapDispatchtoProps)(Cart)

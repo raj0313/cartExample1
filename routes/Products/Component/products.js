@@ -62,7 +62,6 @@ class ProductList extends React.Component{
                 data = {item}  
                 addQuantity = {this.props.addQuantity}
                 removeQuantity = {this.props.removeQuantity}
-
                 addToCart = {this.props.addToCart}/>}
             />
             }
@@ -71,14 +70,27 @@ class ProductList extends React.Component{
             
                 <TouchableOpacity onPress={()=>  Actions.push("cart")} 
                 style={{bottom:0,
+                  flexDirection:"row",
                 height:"5%",
+                justifyContent:"space-around",
                 alignItems:"center",
                 backgroundColor:"#3E9920",
                 borderRadius:0}}>
                  <Text  
                  style={{color:"#fff",
                  textAlign:"center",
-                 textAlignVertical:"center"}}>  VIEW CART NZ $ {this.props.products.total} items : {this.props.cart.length} </Text>
+                 textAlignVertical:"center"}}>  
+                 VIEW CART 
+                 </Text>
+                 <Text  style={{color:"#fff",
+                 textAlign:"center",
+                 textAlignVertical:"center"}}> NZ $   Total:{this.props.cart.reduce((total,item)=>{
+                    return total + item.total
+                },0)} 
+                </Text>
+                <Text  style={{color:"#fff",
+                 textAlign:"center",
+                 textAlignVertical:"center"}}> items : {this.props.cart.length} </Text>
                  </TouchableOpacity>
                      
             }

@@ -82,7 +82,7 @@ export default function ProductReducer(state=initialState,action){
                        
                             return{
                                 ...state,
-                                selectedItems:[
+                                cart:[
                                     ...state.cart.slice(0, action.payload),
                                     ...state.cart.slice(action.payload + 1)
                                 ]
