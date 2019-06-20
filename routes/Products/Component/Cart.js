@@ -20,8 +20,7 @@ class Cart extends React.Component{
         }
     }
     componentDidMount(){
-        //call to action 
-        //this.props.getProductList(products)
+    
         console.log(this.props.cart)
     }
     
