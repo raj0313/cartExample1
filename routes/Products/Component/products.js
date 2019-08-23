@@ -85,7 +85,7 @@ class ProductList extends React.Component{
                  <Text  style={{color:"#fff",
                  textAlign:"center",
                  textAlignVertical:"center"}}> NZ $   Total:{this.props.cart.reduce((total,item)=>{
-                    return total + item.total
+                    return total + item.subtotal
                 },0)} 
                 </Text>
                 <Text  style={{color:"#fff",

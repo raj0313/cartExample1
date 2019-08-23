@@ -29,7 +29,8 @@ export default function ProductReducer(state=initialState,action){
                     name: action.payload.name,
                     price:action.payload.price,
                     quantity: state.quantity ,
-                    total : action.payload.price * state.quantity
+                    total : action.payload.price * state.quantity,
+                    subtotal:0
                 }
                 return {  
                     ...state,
@@ -59,9 +60,12 @@ export default function ProductReducer(state=initialState,action){
                
                 return{
                     ...state, 
-             
-                    quantity : state.quantity + 1
-                }
+                    cart: state.cart.map((item,index)=>item.id ===action.payload?
+                    {...item,
+                        quantity:item.quantity+1,
+                        subtotal:item.price * item.quantity
+                         }:item)
+                     }
                
                
                 case 'REMOVE_QUANTITY':

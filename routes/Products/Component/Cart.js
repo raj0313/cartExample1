@@ -36,7 +36,7 @@ class Cart extends React.Component{
            
             <View style ={{alignItems : "center"}}>
                     <Text style={styles.text}>{item.name}</Text>
-                    <Text style={styles.text2}><Icon name ="circle-with-cross"/>{item.price} x {item.quantity} = {item.total.toFixed(2)}</Text>
+                    <Text style={styles.text2}><Icon name ="circle-with-cross"/>{item.price} x {item.quantity} = {item.subtotal.toFixed(2)}</Text>
                     <TouchableOpacity style={{backgroundColor:"red",width:"40%"}}>
                     <Text style={{color:"#fff",textAlign:"center",textAlignVertical:"center"}} onPress={()=> this.props.removeCart(index)}><Icon name ="cross"/>Remove</Text>
                     </TouchableOpacity>

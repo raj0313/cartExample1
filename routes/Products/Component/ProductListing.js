@@ -38,7 +38,7 @@ class ProductListing extends React.Component{
 											<Icon
 												name="plus-circle"
 												size={30} color={"blue"}
-												onPress={() => this.props.addQuantity(this.props.data.id)} />
+												onPress={() => this.props.addQuantity(this.props.data.item.id)} />
 										</View>
 									</View>
                 <TouchableOpacity
